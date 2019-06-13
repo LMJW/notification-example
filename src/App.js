@@ -1,23 +1,27 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
-import thunkMiddleware from 'redux-thunk';
+import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 
-import rootReducer from './store/reducer';
-import Container from './component/container';
+import NotificationsSystem from 'reapop';
+import theme from 'reapop-theme-wybo';
 
-const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunkMiddleware, createLogger())));
+import rootReducer from './store/reducer';
+import Demo from './component/demo';
+
+// const store = createStore(rootReducer, composeWithDevTools(applyMiddleware(thunkMiddleware, createLogger())));
+const store = composeWithDevTools(applyMiddleware(thunk, createLogger()))(createStore)(rootReducer, {});
 
 class App extends React.Component {
 	render() {
 		return (
 			<Provider store={store}>
-				<Container />
+				<Demo />
+				<NotificationsSystem theme={theme} />
 			</Provider>
 		);
 	}

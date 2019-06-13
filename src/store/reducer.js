@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 
-import { reducer as notification } from 'react-notification-system-redux';
+import { reducer as notificationsReducer } from 'reapop';
 
-const rootReducer = combineReducers({ notification });
+const rootReducer = combineReducers({ notifications: notificationsReducer() });
 
 export default rootReducer;
